@@ -22,6 +22,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: ./src/native-app
         run: npm install
 
       - name: Run ESLint
