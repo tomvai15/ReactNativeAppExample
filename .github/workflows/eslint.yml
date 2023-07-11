@@ -11,20 +11,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    defaults:
+        run:
+            working-directory: ./src/native-app
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 18
-
       - name: Install dependencies
-        working-directory: ./src/native-app
         run: npm install
-
       - name: Run ESLint
-        working-directory: ./src/native-app
         run: npm run lint
