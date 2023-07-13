@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  APP_PATH: src/native-app/
+
 jobs:
   eslint:
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
           fetch-depth: 0
       - name: Check if files changed
         run: |
-            if git diff --name-only origin/${{github.base_ref}} origin/${{github.head_ref}}; then
+            if git diff --name-only origin/${{github.base_ref}} origin/${{github.head_ref}} | grep "^$APP_PATH"; then
               echo "Files have changed in the pull request."
             else
               echo "No files have changed in the pull request."
